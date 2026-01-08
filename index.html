@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fashion Joke Generator</title>
+    <style>
+        body { font-family: Arial; text-align: center; margin-top: 50px; background-color: #fff0f5; }
+        button { padding: 12px 25px; font-size: 18px; cursor: pointer; background-color: #ff69b4; color: white; border: none; border-radius: 5px; }
+        button:hover { background-color: #ff1493; }
+        #joke { margin-top: 30px; font-size: 20px; color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Fashion Joke Generator</h1>
+    <button id="getJokeBtn">Get a Fashion Joke</button>
+    <div id="joke"></div>
+
+    <script>
+        const button = document.getElementById("getJokeBtn");
+        const jokeDiv = document.getElementById("joke");
+
+        button.addEventListener("click", () => {
+            fetch("/api/joke")
+                .then(response => response.json())
+                .then(data => {
+                    jokeDiv.textContent = data.joke;
+                });
+        });
+    </script>
+</body>
+</html>
